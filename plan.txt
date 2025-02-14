@@ -150,6 +150,7 @@ socketRef.current.on('allMessages', (messages) => {
 
 Stack:
 Next js
+Zod
 FSD
 Mobx
 Nest js
