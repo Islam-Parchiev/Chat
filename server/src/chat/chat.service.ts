@@ -1,31 +1,61 @@
 import { Injectable } from '@nestjs/common';
 import { Message } from '@prisma/client';
-// import { CreateChatDto } from './dto/create-chat.dto';
-// import { UpdateChatDto } from './dto/update-chat.dto';
 import { PrismaService } from 'prisma/prisma.service';
-
-@Injectable()
+export interface IMessage {
+  content:Message
+}
+Injectable()
 export class ChatService {
   constructor(private prisma: PrismaService) {}
 
-  async createMessage(content:Message) {
-    console.log("chat.service:12",content)
+  async createMessage(content: IMessage) {
     return await this.prisma.message.create({
       data: {
-        updatedAt:new Date(),
-        userId:Math.random()*1000,
-        text:content.text
+       text:content.content.text,
+       createdAt:new Date(),
+       userId:341324
       },
     });
-    return true
-    console.log("chat.service:20")
   }
 
   async getAllMessages() {
-    return await this.prisma.message.findMany({
-      orderBy: {
-        createdAt: 'asc', // Или 'desc' для сортировки по убыванию
-      },
-    });
+    // if(await this.prisma.message.findMany({
+    //   orderBy: {
+    //     createdAt: 'asc', 
+    //   },
+    // })) {
+    //   const messages = await this.prisma.message.findMany({
+    //     orderBy: {
+    //       createdAt: 'asc', // Или 'desc' для сортировки по убыванию
+    //     },
+    //   });
+    //   return messages
+    // }else {
+    //   return "hren333"
+    // }
+    return [
+      {
+        id: 1111,
+        userId: 121321,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        text: "Hello",
+    },
+    {
+      id: 2222,
+      userId: 123456,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      text: "Hi",
+  },
+  {
+    id: 3333,
+    userId: 4321,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    text: "Test",
+}
+
+    ]
   }
 }
