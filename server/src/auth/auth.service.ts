@@ -10,8 +10,11 @@ export class AuthService {
     private readonly prisma:PrismaService
     ) {}
   async validateUser(email:string, password: string){
+    console.log('server auth.service 13',email,password);
+    if(!await this.prisma.user.findFirstOrThrow({ where: {email:email}})) {
+      return "User not Found"
+    }
     const user = await this.prisma.user.findFirstOrThrow({ where: {email:email}});
-
     const passwordIsMatch = await argon2.verify(user.password,password)
 
     if (user && passwordIsMatch) {
