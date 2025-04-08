@@ -1,6 +1,6 @@
 "use client"
 import { setCookie, getCookie } from 'cookies-next/client';
-import { Button } from '@/components/Button';
+import { Button } from '../ui/button';
 import { Input } from '@/components/Input';
 import React, { FormEvent, useState } from 'react';
 interface Props {

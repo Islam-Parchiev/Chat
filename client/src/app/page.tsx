@@ -1,7 +1,8 @@
-import { Counter } from "@/components/Counter";
-import styles from "./page.module.css";
-import { Avatar } from "@/components/Avatar";
-import { Sidebar } from "@/components/Sidebar";
+"use client";
+import { Input } from "@/components/ui/input";
+import { CardList } from "@/components/CardList";
+import { Chat } from "@/components/Chat";
+
 // import { getCookie } from "cookies-next/client";
 // async function checkAuth(): Promise<boolean> {
 //   try {
@@ -41,11 +42,20 @@ export default function Home() {
 
   // const authed = await checkAuth();
   return (
-    <div className={styles.page}>
+    <div className="flex gap-5">
       {/* {authed ? "Авторизован" : "Not authed"} */}
-      <Sidebar />
-      <Counter />
-      <Avatar />
+      <div className="h-[90vh] flex flex-col gap-5 pl-5 w-[50%]">
+        <Input placeholder="Search" className="w-[538px]" />
+
+        <div className="flex flex-col gap-5">
+          <CardList title="Groups" />
+          <CardList title="People" />
+        </div>
+      </div>
+      <div className="h-[90vh] flex w-[50%]">
+
+        <Chat />
+      </div>
     </div>
   );
 }
